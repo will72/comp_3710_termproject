@@ -19,6 +19,7 @@ public class FragGame extends Fragment implements View.OnClickListener {
     ImageView imageRed;
     ImageView imageYellow;
     ImageView imageGreen;
+    final long DELAY = 100;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -70,6 +71,6 @@ public class FragGame extends Fragment implements View.OnClickListener {
             public void run() {
                 buttonIn.setAlpha((float) 0.3);
             }
-        }, 1000);
+        }, DELAY);
     }
 }
