@@ -1,7 +1,5 @@
 package edu.auburn.eng.csse.comp3710.spring2018.nullterminator;
 
-//test comment
-
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
