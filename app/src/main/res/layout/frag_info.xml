@@ -3,14 +3,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/red"
+    android:background="@color/bar_color"
     android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FragInfo"
-        android:textColor="@color/white"
-        android:textSize="@dimen/header_text"/>
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/spacing_large">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bar_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Last Score: "
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/spacing_small"
+                android:textSize="@dimen/header_text"/>
+
+            <TextView
+                android:id="@+id/info_last_score"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/spacing_small"
+                android:textStyle="bold"
+                android:textSize="@dimen/header_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bar_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="High Score: "
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/spacing_small"
+                android:textSize="@dimen/header_text"/>
+
+            <TextView
+                android:id="@+id/info_high_score"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/spacing_small"
+                android:textStyle="bold"
+                android:textSize="@dimen/header_text"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

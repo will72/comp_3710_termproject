@@ -8,9 +8,11 @@
     <color name="light_gray">#AAAAAA</color>
     <color name="red">#FF0000</color>
     <color name="blue">#0000FF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#00FF00</color>
     <color name="blue_auburn">#03244D</color>
     <color name="transparent">#00000000</color>
     <color name="tab_overlay_blue">#87BDFA</color>
     <color name="tab_overlay_dark_grey">#B4B4B4</color>
-    <color name="tab_bar_color">#F6F7F6</color>
+    <color name="bar_color">#F6F7F6</color>
 </resources>
