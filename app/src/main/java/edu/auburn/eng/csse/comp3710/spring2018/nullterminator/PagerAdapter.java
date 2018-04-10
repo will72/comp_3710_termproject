@@ -10,10 +10,21 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
+    MenuActivity menuActivity;
+    FragGame tabFragGame;
+    FragInfo tabFragInfo;
 
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public PagerAdapter(FragmentManager fm, int NumOfTabs,
+                        MenuActivity activityIn) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
+        this.menuActivity = activityIn;
+        tabFragGame = new FragGame();
+        tabFragGame.setMenuActivity(menuActivity);
+        menuActivity.setFragGame(tabFragGame);
+        tabFragInfo = new FragInfo();
+        tabFragInfo.setMenuActivity(menuActivity);
+        menuActivity.setFragInfo(tabFragInfo);
     }
 
     @Override
@@ -21,10 +32,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                FragGame tabFragGame = new FragGame();
                 return tabFragGame;
             case 1:
-                FragInfo tabFragInfo = new FragInfo();
                 return tabFragInfo;
             default:
                 return null;

@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 public class FragInfo extends Fragment {
 
+    MenuActivity menuActivity;
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -26,5 +28,9 @@ public class FragInfo extends Fragment {
 //        TextView LandownerButton = (TextView) view
 //                .findViewById(R.id.landowner_assistance_button);
 //        LandownerButton.setOnClickListener(this);
+    }
+
+    public void setMenuActivity(MenuActivity menuActivityIn) {
+        menuActivity = menuActivityIn;
     }
 }
