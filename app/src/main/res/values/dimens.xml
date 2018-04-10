@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="header_text">18sp</dimen>
+    <dimen name="body_text_xxsmall">8sp</dimen>
+    <dimen name="body_text_xsmall">10sp</dimen>
+    <dimen name="body_text_small">12sp</dimen>
+    <dimen name="body_text_smedium">14sp</dimen>
+    <dimen name="body_text_medium">16sp</dimen>
+    <dimen name="body_text_ledium">20sp</dimen>
+    <dimen name="body_text_mlarge">20sp</dimen>
+    <dimen name="body_text_large">24sp</dimen>
+    <dimen name="body_text_mxlarge">30dp</dimen>
+    <dimen name="body_text_xlarge">36sp</dimen>
+    <dimen name="body_text_xxlarge">48sp</dimen>
+    <dimen name="body_text_xxxlarge">60sp</dimen>
+
+    <dimen name="spacing_2of5">2dp</dimen>
+    <dimen name="spacing_3of5">3dp</dimen>
+    <dimen name="spacing_xxxsmall">1dp</dimen>
+    <dimen name="spacing_xxsmall">2dp</dimen>
+    <dimen name="spacing_xsmall">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_smedium">12dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_xxlarge">40dp</dimen>
+    <dimen name="spacing_xxxlarge">48dp</dimen>
+
+</resources>
