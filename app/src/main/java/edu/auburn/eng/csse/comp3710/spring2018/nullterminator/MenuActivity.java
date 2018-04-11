@@ -12,11 +12,15 @@ public class MenuActivity extends AppCompatActivity {
 
     FragGame fragGame;
     FragInfo fragInfo;
+    ScoreObject scoreObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+
+        scoreObject = new ScoreObject(this);
+
         initTabs();
     }
 

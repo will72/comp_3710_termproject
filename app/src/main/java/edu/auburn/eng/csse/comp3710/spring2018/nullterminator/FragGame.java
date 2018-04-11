@@ -21,8 +21,10 @@ public class FragGame extends Fragment implements View.OnClickListener {
     ImageView imageGreen;
     TextView startGame;
     TextView gameMessages;
+    TextView gameCurrentScore;
 
     GameObject gameObject;
+    boolean inGame = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -44,6 +46,7 @@ public class FragGame extends Fragment implements View.OnClickListener {
         imageGreen = view.findViewById(R.id.button_green);
         startGame = view.findViewById(R.id.start_game);
         gameMessages = view.findViewById(R.id.game_messages);
+        gameCurrentScore = view.findViewById(R.id.game_current_score);
         turnClickListenersOn();
     }
 
@@ -68,16 +71,16 @@ public class FragGame extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_blue:
-                gameObject.buttonGlow(imageBlue);
+                gameObject.buttonPressed(imageBlue, gameObject.BUTTON_BLUE);
                 break;
             case R.id.button_red:
-                gameObject.buttonGlow(imageRed);
+                gameObject.buttonPressed(imageRed, gameObject.BUTTON_RED);
                 break;
             case R.id.button_yellow:
-                gameObject.buttonGlow(imageYellow);
+                gameObject.buttonPressed(imageYellow, gameObject.BUTTON_YELLOW);
                 break;
             case R.id.button_green:
-                gameObject.buttonGlow(imageGreen);
+                gameObject.buttonPressed(imageGreen, gameObject.BUTTON_GREEN);
                 break;
             case R.id.start_game:
                 gameObject.startGame();

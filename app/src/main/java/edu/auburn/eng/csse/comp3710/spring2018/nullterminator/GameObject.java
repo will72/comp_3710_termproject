@@ -12,20 +12,23 @@ import android.widget.ImageView;
 
 public class GameObject {
 
-    public MenuActivity menuActivity;
     public FragGame fragGame;
 
     Handler handler;
     Random rand;
+    ArrayList<Integer> currentSequence;
 
     final long DELAY = 1000;
     final long DELAY_SHORT = 250;
+    final long DELAY_LONG = 3000;
     final float ALPHA = (float) 0.3;
-    ArrayList<Integer> currentSequence;
     final int BUTTON_RED = 0;
     final int BUTTON_BLUE = 1;
     final int BUTTON_GREEN = 2;
     final int BUTTON_YELLOW = 3;
+
+    int currentSequenceSpot = 0;
+    int currentScore = 0;
 
     public GameObject(FragGame fragGameIn) {
         fragGame = fragGameIn;
@@ -36,7 +39,7 @@ public class GameObject {
         currentSequence = new ArrayList<>();
     }
 
-    public void buttonGlow(final ImageView buttonIn) {
+    public void buttonPressed(final ImageView buttonIn, int buttonId) {
         buttonIn.setAlpha((float) 1.0);
         handler.postDelayed(new Runnable() {
             @Override
@@ -44,25 +47,90 @@ public class GameObject {
                 buttonIn.setAlpha(ALPHA);
             }
         }, DELAY_SHORT);
+        if(fragGame.inGame) {
+            if (buttonId != currentSequence.get(currentSequenceSpot)){
+                fragGame.turnClickListenersOff();
+                fragGame.gameMessages.setText("Incorrect :(");
+                fragGame.gameMessages.setBackgroundColor(
+                        fragGame.menuActivity.getResources()
+                                .getColor(R.color.red));
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        currentScore = 0;
+                        fragGame.gameCurrentScore.setText(
+                                Integer.toString(currentScore));
+                        fragGame.gameMessages.setText("Hit " +
+                                "\"START GAME\" to start!");
+                        fragGame.gameMessages.setBackgroundColor(
+                                fragGame.menuActivity.getResources()
+                                        .getColor(R.color.bar_color));
+                        currentSequenceSpot = 0;
+                        currentSequence = new ArrayList<>();
+                        fragGame.startGame.setText("START GAME");
+                        fragGame.turnClickListenersOn();
+                        fragGame.inGame = false;
+                    }
+                }, DELAY_LONG);
+            } else  {
+                currentSequenceSpot++;
+                if(currentSequenceSpot >= currentSequence.size()) {
+                    currentScore++;
+                    fragGame.gameCurrentScore.setText(
+                            Integer.toString(currentScore));
+                    fragGame.turnClickListenersOff();
+                    currentSequenceSpot = 0;
+                    fragGame.gameMessages.setText("Good Job! Moving on...");
+                    fragGame.gameMessages.setBackgroundColor(
+                            fragGame.menuActivity.getResources()
+                                    .getColor(R.color.green));
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            fragGame.gameMessages.setBackgroundColor(
+                                    fragGame.menuActivity.getResources()
+                                            .getColor(R.color.bar_color));
+                            dispSequence();
+                        }
+                    }, DELAY_LONG);
+                }
+            }
+        }
+        updateScore();
+    }
+
+    private void updateScore() {
+        fragGame.menuActivity.scoreObject
+                .writeLastScore(Integer
+                        .toString(currentScore));
+        if(currentScore > fragGame.menuActivity
+                .scoreObject.highScore)
+            fragGame.menuActivity
+                    .scoreObject.writeHighScore(Integer
+                    .toString(currentScore));
+        fragGame.menuActivity.fragInfo.updateScoreInfo(
+                fragGame.menuActivity
+                        .scoreObject);
     }
 
     public void startGame() {
+        fragGame.inGame = true;
         fragGame.turnClickListenersOff();
         fragGame.startGame.setText("GAME IN PROGRESS");
-        fragGame.gameMessages.setText("Pay attention to the sequence.");
         dispSequence();
     }
 
     private void dispSequence() {
+        fragGame.gameMessages.setText("Pay attention to the sequence.");
         currentSequence.add(rand.nextInt(4));
         ArrayList<Integer> sequenceCopy = new ArrayList<>(currentSequence);
         dispSequenceHelper(sequenceCopy);
+        fragGame.turnClickListenersOff();
     }
     private void dispSequenceHelper(final ArrayList<Integer> arrayIn) {
         if(arrayIn.size() == 0) {
             fragGame.turnClickListenersOn();
-            fragGame.startGame.setText("START GAME");
-            fragGame.gameMessages.setText("Hit \"START GAME\" to start!");
+            fragGame.gameMessages.setText("Now enter the sequence!");
             return;
         }
         final ImageView currentImage;
