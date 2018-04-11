@@ -71,16 +71,16 @@ public class FragGame extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_blue:
-                gameObject.buttonPressed(imageBlue, gameObject.BUTTON_BLUE);
+                gameObject.buttonPressed(imageBlue, gameObject.BUTTON_BLUE, gameObject.bluePlayer);
                 break;
             case R.id.button_red:
-                gameObject.buttonPressed(imageRed, gameObject.BUTTON_RED);
+                gameObject.buttonPressed(imageRed, gameObject.BUTTON_RED, gameObject.redPlayer);
                 break;
             case R.id.button_yellow:
-                gameObject.buttonPressed(imageYellow, gameObject.BUTTON_YELLOW);
+                gameObject.buttonPressed(imageYellow, gameObject.BUTTON_YELLOW, gameObject.yellowPlayer);
                 break;
             case R.id.button_green:
-                gameObject.buttonPressed(imageGreen, gameObject.BUTTON_GREEN);
+                gameObject.buttonPressed(imageGreen, gameObject.BUTTON_GREEN, gameObject.greenPlayer);
                 break;
             case R.id.start_game:
                 gameObject.startGame();

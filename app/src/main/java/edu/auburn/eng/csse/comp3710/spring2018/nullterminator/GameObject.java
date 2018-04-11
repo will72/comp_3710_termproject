@@ -3,6 +3,7 @@ package edu.auburn.eng.csse.comp3710.spring2018.nullterminator;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,6 +20,13 @@ public class GameObject {
     Random rand;
     ArrayList<Integer> currentSequence;
     boolean newHighScore = false;
+
+    MediaPlayer bluePlayer;
+    MediaPlayer redPlayer;
+    MediaPlayer yellowPlayer;
+    MediaPlayer greenPlayer;
+    MediaPlayer correctPlayer;
+    MediaPlayer incorrectPlayer;
 
     final long DELAY = 1000;
     final long DELAY_SHORT = 250;
@@ -39,14 +47,26 @@ public class GameObject {
         rand = new Random();
 
         currentSequence = new ArrayList<>();
+
+        bluePlayer = MediaPlayer.create(fragGame.getContext(), R.raw.button1);
+        redPlayer = MediaPlayer.create(fragGame.getContext(), R.raw.button2);
+        yellowPlayer = MediaPlayer.create(fragGame.getContext(), R.raw.button3);
+        greenPlayer = MediaPlayer.create(fragGame.getContext(), R.raw.button4);
+        correctPlayer = MediaPlayer.create(fragGame.getContext(), R.raw.correct);
+        incorrectPlayer = MediaPlayer.create(fragGame.getContext(), R.raw.incorrect);
+        correctPlayer.setVolume(0.01f, 0.01f);
+        incorrectPlayer.setVolume(0.01f, 0.01f);
     }
 
-    public void buttonPressed(final ImageView buttonIn, int buttonId) {
+    public void buttonPressed(final ImageView buttonIn, int buttonId, final MediaPlayer playerIn) {
+        playerIn.start();
         buttonIn.setAlpha((float) 1.0);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 buttonIn.setAlpha(ALPHA);
+                playerIn.pause();
+                playerIn.seekTo(0);
             }
         }, DELAY_SHORT);
         if(fragGame.inGame) {
@@ -56,6 +76,7 @@ public class GameObject {
                 fragGame.gameMessages.setBackgroundColor(
                         fragGame.menuActivity.getResources()
                                 .getColor(R.color.red));
+                incorrectPlayer.start();
                 if(newHighScore) {
                     newHighScore = false;
                     Toast.makeText(fragGame.menuActivity
@@ -81,6 +102,8 @@ public class GameObject {
                         fragGame.startGame.setText("START GAME");
                         fragGame.turnClickListenersOn();
                         fragGame.inGame = false;
+//                        incorrectPlayer.pause();
+                        incorrectPlayer.seekTo(0);
                     }
                 }, DELAY_LONG);
             } else  {
@@ -95,12 +118,15 @@ public class GameObject {
                     fragGame.gameMessages.setBackgroundColor(
                             fragGame.menuActivity.getResources()
                                     .getColor(R.color.green));
+                    correctPlayer.start();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             fragGame.gameMessages.setBackgroundColor(
                                     fragGame.menuActivity.getResources()
                                             .getColor(R.color.bar_color));
+                            correctPlayer.pause();
+                            correctPlayer.seekTo(0);
                             dispSequence();
                         }
                     }, DELAY_LONG);
@@ -148,29 +174,38 @@ public class GameObject {
             return;
         }
         final ImageView currentImage;
+        final MediaPlayer currentPlayer;
         int buttonType = arrayIn.get(0);
         switch (buttonType) {
             case BUTTON_RED:
                 currentImage = fragGame.imageRed;
+                currentPlayer = redPlayer;
                 break;
             case BUTTON_BLUE:
                 currentImage = fragGame.imageBlue;
+                currentPlayer = bluePlayer;
                 break;
             case BUTTON_GREEN:
                 currentImage = fragGame.imageGreen;
+                currentPlayer = greenPlayer;
                 break;
             case BUTTON_YELLOW:
                 currentImage = fragGame.imageYellow;
+                currentPlayer = yellowPlayer;
                 break;
             default:
                 currentImage = null;
+                currentPlayer = null;
                 break;
         }
         currentImage.setAlpha((float) 1.0);
+        currentPlayer.start();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 currentImage.setAlpha(ALPHA);
+                currentPlayer.pause();
+                currentPlayer.seekTo(0);
                 arrayIn.remove(0);
                 handler.postDelayed(new Runnable() {
                     @Override

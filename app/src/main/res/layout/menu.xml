@@ -9,22 +9,22 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/toolbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:background="@color/blue_auburn">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/toolbar_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:orientation="vertical"-->
+        <!--android:gravity="center"-->
+        <!--android:background="@color/blue_auburn">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Aubie's Memory"
-            android:textColor="@color/white"
-            android:textSize="@dimen/header_text"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Aubie's Memory"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/header_text"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
