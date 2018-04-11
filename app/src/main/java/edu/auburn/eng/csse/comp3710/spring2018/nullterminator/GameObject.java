@@ -5,6 +5,7 @@ import java.util.Random;
 
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Created by Will on 2018-04-10.
@@ -17,6 +18,7 @@ public class GameObject {
     Handler handler;
     Random rand;
     ArrayList<Integer> currentSequence;
+    boolean newHighScore = false;
 
     final long DELAY = 1000;
     final long DELAY_SHORT = 250;
@@ -54,6 +56,15 @@ public class GameObject {
                 fragGame.gameMessages.setBackgroundColor(
                         fragGame.menuActivity.getResources()
                                 .getColor(R.color.red));
+                if(newHighScore) {
+                    newHighScore = false;
+                    Toast.makeText(fragGame.menuActivity
+                                    .getApplicationContext(),
+                            ("New high score of "
+                                    + Integer.toString(currentScore)
+                                    + "!!!"),
+                            Toast.LENGTH_LONG).show();
+                }
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -104,10 +115,12 @@ public class GameObject {
                 .writeLastScore(Integer
                         .toString(currentScore));
         if(currentScore > fragGame.menuActivity
-                .scoreObject.highScore)
+                .scoreObject.highScore) {
             fragGame.menuActivity
                     .scoreObject.writeHighScore(Integer
                     .toString(currentScore));
+            newHighScore = true;
+        }
         fragGame.menuActivity.fragInfo.updateScoreInfo(
                 fragGame.menuActivity
                         .scoreObject);
