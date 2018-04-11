@@ -4,42 +4,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/light_gray"
+    android:background="@color/gray_dark"
     android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/bar_color"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/spacing_large">
+        android:background="@color/bar_color">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/start_game"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Current Score: "
+            android:layout_weight="1"
+            android:text="START GAME"
             android:textColor="@color/black"
-            android:gravity="center_vertical"
-            android:paddingRight="@dimen/spacing_small"
-            android:textSize="@dimen/header_text"/>
+            android:gravity="center"
+            android:textSize="@dimen/header_text"
+            android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/game_current_score"
-            android:layout_width="wrap_content"
+        <View
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_light"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="0"
-            android:textColor="@color/black"
-            android:gravity="center_vertical"
-            android:paddingRight="@dimen/spacing_small"
-            android:textStyle="bold"
-            android:textSize="@dimen/header_text"/>
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/spacing_large"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Current Score: "
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/spacing_small"
+                android:textSize="@dimen/header_text"/>
+
+            <TextView
+                android:id="@+id/game_current_score"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="0"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/spacing_small"
+                android:textStyle="bold"
+                android:textSize="@dimen/header_text"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/light_gray"/>
+        android:background="@color/gray_light"/>
+
+    <TextView
+        android:id="@+id/game_messages"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/bar_color"
+        android:text="Hit &quot;START GAME&quot; to start!"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray_light"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -103,8 +141,8 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/aubie_circle"
             android:layout_centerInParent="true"/>
 
