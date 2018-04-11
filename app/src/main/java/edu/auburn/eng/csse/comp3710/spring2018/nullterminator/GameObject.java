@@ -107,7 +107,8 @@ public class GameObject {
                 }
             }
         }
-        updateScore();
+        if(fragGame.inGame)
+            updateScore();
     }
 
     private void updateScore() {
