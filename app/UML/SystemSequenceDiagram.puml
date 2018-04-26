@@ -1,0 +1,25 @@
+@startuml
+title Info SSD
+actor Player
+participant Game
+participant Info
+group SD:  Gameboard
+
+Player -> Game: start
+loop while !(incorrect Game pressed)
+Player <-- Game: currentSequence
+note right: UC: Press a Colored Game
+else
+
+opt continueGame
+Player -> Game: press
+note right: UC: Correct Game
+end
+end
+Player <-- Game: Score
+note right: UC: Incorrect Game
+Game -> Info: transmitScore
+note right: UC: Publish Last Score and possibly High Score
+end
+
+@enduml
