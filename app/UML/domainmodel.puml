@@ -18,9 +18,9 @@ yellowButton
 greenButton
 }
 
-MenuActivity - Score: publishes high score >
+MenuActivity "1" *- "2" Score: publishes high score >
 
-MenuActivity -- Game: implements >
+MenuActivity "1" *-- "2" Game: implements >
 
 
 

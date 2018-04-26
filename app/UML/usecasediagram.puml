@@ -1,0 +1,28 @@
+@startuml
+title Use Case Diagram
+
+actor Player
+
+rectangle  {
+
+
+    usecase "Press a Colored Sequence" as UC_player_1
+    usecase "Sequence of Colors" as colorSequence
+    usecase "Correct Button" as correctButton
+    usecase "Incorrect Button" as incorrectButton
+    usecase "Correct Sequence Pressed" as correctSequence
+    usecase "Incorrect Sequence Pressed" as incorrectSequence
+
+    Player -- UC_player_1
+    UC_player_1 ..> correctButton: <<includes>>
+    UC_player_1 ..> incorrectButton: <<includes>>
+    colorSequence ..> correctSequence: <<includes>>
+    colorSequence ..> incorrectSequence: <<includes>>
+    correctButton ..> correctSequence: <<includes>>
+    correctButton ..> incorrectSequence: <<includes>>
+    correctSequence ..> (Move On): <<extends>>
+    incorrectSequence ..> (Game Over): <<extends>>
+    (Game Over) ..> (Publish Score): <<includes>>
+}
+@enduml
+
