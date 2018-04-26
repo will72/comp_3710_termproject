@@ -1,0 +1,25 @@
+@startuml
+title Simon SSD
+actor Player
+participant Button
+actor Simon
+group SD:  Gameboard
+
+Player -> Button: start
+loop while !(incorrect sequence pressed)
+Player <-- Button: Button
+note right: UC: Press a Colored Button
+else
+
+opt continueSequence
+Player -> Button: press
+note right: UC: Correct Button
+end
+end
+Player <-- Button: Score
+note right: UC: Incorrect Button
+Button -> Simon: transmitScore
+note right: UC: Publish High Score
+end
+
+@enduml

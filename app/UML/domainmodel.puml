@@ -1,0 +1,30 @@
+@startuml
+
+title MenuActivity Domain Model
+class MenuActivity {
+tabs
+}
+class Score{
+highScore
+currentScore
+}
+
+class Game {
+buttonSequence
+playerSequence
+blueButton
+redButton
+yellowButton
+greenButton
+}
+
+MenuActivity - Score: publishes high score >
+
+MenuActivity -- Game: implements >
+
+
+
+hide empty members
+hide methods
+
+@enduml

@@ -1,0 +1,132 @@
+@startsalt
+{
+{T
++ Press a Colored Button
+++  Goal
++++ To press one of the four available colored buttons.
+++ Entry conditions
++++ The player has started the game and has not pressed an incorrect button yet.
+++ Scenario
++++ The player has to remember what Simon has been "saying"
++++ The player must input the correct sequence of colors that Simon has said
+++ Exceptions
++++ The game is continuous and must be terminated
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The game is terminated/completed.
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ Correct Button
+++  Goal
++++ To input the correct color as the next sequence in what Simon said
+++ Entry conditions
++++ The game must have started and not be terminated
+++ Scenario
++++ The user presses the correct color in the current sequence.
+++ Exceptions
++++ The user presses the incorrect button
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The correct button in the sequence is pressed
++++ Failure Exit Conditions
+++++ The incorrect button in the sequence is pressed, terminating the game.
+}
+---
+{T
++ Inorrect Button
+++  Goal
++++ To input the incorrect color as the next sequence in what Simon said
+++ Entry conditions
++++ The game must have started and not be terminated
+++ Scenario
++++ The user presses the incorrect color in the current sequence.
+++ Exceptions
++++ The user presses the correct button
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The incorrect button in the sequence is pressed
++++ Failure Exit Conditions
+++++ The correct button in the sequence is pressed, leading to the next color.
+}
+---
+{T
++ Remember Sequence of Colors
+++  Goal
++++ To remember the correct sequence of colors which Simon last said.
+++ Entry conditions
++++ The game must have started and not be terminated.
+++ Scenario
++++ Simon reads out a sequence of colors, with each new sequence adding an element.
++++ Simon must correctly identify any mistakes in the user repeating the sequence.
+++ Exceptions
++++ It is the first round of the game and there are no sequences to remember.
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The player incorrectly enters the sequence, terminating the game.
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ Correct Button Pressed
+++  Goal
++++ To determine if the player pressed the correct color.
+++ Entry conditions
++++ The game must have started and not be terminated.
+++ Scenario
++++ The player presses a certain color hoping it is the correct sequence.
++++ This use case determines if the button is correct.
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The player presses the correct button.
+++++ Another color is added to the sequence.
++++ Failure Exit Conditions
+++++ The player presses the incorrect button.
+}
+---
+{T
++ Inorrect Button Pressed
+++  Goal
++++ To determine if the player pressed the incorrect color.
+++ Entry conditions
++++ The game must have started and not be terminated.
+++ Scenario
++++ The player presses a certain color hoping it is the correct sequence.
++++ This use case determines if the button is incorrect.
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The player presses the incorrect button.
+++++ The game is terminated and the score is recorded.
++++ Failure Exit Conditions
+++++ The player presses the correct button.
+}
+---
+{T
++ High Score
+++  Goal
++++ To determine if the player has a score greater than the high score.
+++ Entry conditions
++++ The game must be terminated with the player having a score.
+++ Scenario
++++ The player ends the game by pressing the incorrect color in the sequence.
++++ This use case determines if the total score is highest
+++++ If so, the new score is recorded as the new high score
+++++ Otherwise, the score is forgotten
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The new high score is recorded, if it is greater than the previous.
++++ Failure Exit Conditions
+++++ The new score is not greater than the high score, and is forgotten.
+}
+
+}
+@endsalt
