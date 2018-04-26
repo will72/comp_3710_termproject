@@ -1,7 +1,7 @@
 @startsalt
 {
 {T
-+ Press a Colored Button
++ Press a Colored Sequence
 ++  Goal
 +++ To press one of the four available colored buttons.
 ++ Entry conditions
@@ -16,6 +16,23 @@
 ++++ The game is terminated/completed.
 +++ Failure Exit Conditions
 ++++ None
+}
+---
+{T
++ Sequence of Colors
+++  Goal
++++ To implement a random sequence of colors.
+++ Entry conditions
++++ The game must have started and not be terminated
+++ Scenario
++++ Another color is added to the end of the sequence after each correct sequence is pressed.
+++ Exceptions
++++ The user presses the incorrect button
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The correct button in the sequence is pressed
++++ Failure Exit Conditions
+++++ The incorrect button in the sequence is pressed, terminating the game.
 }
 ---
 {T
@@ -36,7 +53,7 @@
 }
 ---
 {T
-+ Inorrect Button
++ Incorrect Button
 ++  Goal
 +++ To input the incorrect color as the next sequence in what Simon said
 ++ Entry conditions
@@ -53,32 +70,14 @@
 }
 ---
 {T
-+ Remember Sequence of Colors
++ Correct Sequence Pressed
 ++  Goal
-+++ To remember the correct sequence of colors which Simon last said.
++++ To determine if the player pressed the correct colors.
 ++ Entry conditions
 +++ The game must have started and not be terminated.
 ++ Scenario
-+++ Simon reads out a sequence of colors, with each new sequence adding an element.
-+++ Simon must correctly identify any mistakes in the user repeating the sequence.
-++ Exceptions
-+++ It is the first round of the game and there are no sequences to remember.
-++ Exit conditions
-+++ Successful Exit Conditions
-++++ The player incorrectly enters the sequence, terminating the game.
-+++ Failure Exit Conditions
-++++ None
-}
----
-{T
-+ Correct Button Pressed
-++  Goal
-+++ To determine if the player pressed the correct color.
-++ Entry conditions
-+++ The game must have started and not be terminated.
-++ Scenario
-+++ The player presses a certain color hoping it is the correct sequence.
-+++ This use case determines if the button is correct.
++++ The player presses a certain set of colors hoping it is the correct sequence.
++++ This use case determines if the sequence is correct.
 ++ Exceptions
 +++ None
 ++ Exit conditions
@@ -86,30 +85,67 @@
 ++++ The player presses the correct button.
 ++++ Another color is added to the sequence.
 +++ Failure Exit Conditions
-++++ The player presses the incorrect button.
+++++ The player presses the incorrect sequence.
 }
 ---
 {T
-+ Inorrect Button Pressed
++ Inorrect Sequence Pressed
 ++  Goal
-+++ To determine if the player pressed the incorrect color.
++++ To determine if the player pressed the incorrect sequence.
 ++ Entry conditions
 +++ The game must have started and not be terminated.
 ++ Scenario
-+++ The player presses a certain color hoping it is the correct sequence.
-+++ This use case determines if the button is incorrect.
++++ The player presses a certain set of colors hoping it is the correct sequence.
++++ This use case determines if the sequence is incorrect.
 ++ Exceptions
 +++ None
 ++ Exit conditions
 +++ Successful Exit Conditions
-++++ The player presses the incorrect button.
+++++ The player presses the incorrect sequence.
 ++++ The game is terminated and the score is recorded.
 +++ Failure Exit Conditions
 ++++ The player presses the correct button.
 }
 ---
 {T
-+ High Score
++ Move On
+++  Goal
++++ To add to the score and add another color to the sequence.
+++ Entry conditions
++++ The game must not be terminated.
+++ Scenario
++++ The player enters the correct sequence.
++++ The score is incremented by one
++++ A new color is added to the sequence
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The new score is added and a new color is added.
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ Game Over
+++  Goal
++++ To terminate the game.
+++ Entry conditions
++++ The game must be in progress.
+++ Scenario
++++ The player enters an incorrect sequence.
++++ The score is recorded
+++ Exceptions
++++ None
+++ Exit conditions
++++ Successful Exit Conditions
+++++ The new score is added along with the high score if it's greater.
++++ Failure Exit Conditions
+++++ None
+}
+---
+{T
++ Publish Score
 ++  Goal
 +++ To determine if the player has a score greater than the high score.
 ++ Entry conditions
@@ -118,7 +154,7 @@
 +++ The player ends the game by pressing the incorrect color in the sequence.
 +++ This use case determines if the total score is highest
 ++++ If so, the new score is recorded as the new high score
-++++ Otherwise, the score is forgotten
+++++ Otherwise, the score is added to last score
 ++ Exceptions
 +++ None
 ++ Exit conditions
